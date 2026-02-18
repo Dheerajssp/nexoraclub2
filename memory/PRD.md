@@ -1,284 +1,212 @@
 # Nexora Club - Product Requirements Document
 
-**Last Updated:** December 18, 2024
+**Last Updated:** December 18, 2025
 
 ## Original Problem Statement
-Create a modern, responsive, and professional website for a college tech club named "Nexora Club" with a futuristic dark theme, blue-purple gradient accents (updated to cyan-green #00FFD1), clean UI, and modern typography. The tagline is "Where Innovation Meets Execution."
+Create a modern, responsive, and professional website for a college tech club named "Nexora Club" with a futuristic dark theme, cyan-green accent (#00FFD1), clean UI, and modern typography. Tagline: "Where Innovation Meets Execution."
 
 ## Architecture
 - **Frontend:** React with React Router
-- **Backend:** FastAPI (not yet implemented)
-- **Database:** MongoDB (not yet implemented)
+- **Backend:** FastAPI with MongoDB (Motor async driver)
+- **Database:** MongoDB
 - **UI Library:** Shadcn UI components
 - **3D Graphics:** Spline (Neon balls animation)
-- **Design System:** Custom dark theme with cyan-green accent (#00FFD1)
+- **Authentication:** JWT-based with bcrypt password hashing
 
 ## User Personas
-1. **Students** - Want to join the club, register for events, and access resources
+1. **Students** - Join club, register for events, access resources, view dashboard
 2. **Core Team Members** - Manage events and member registrations
-3. **Visitors** - Learn about the club and its activities
+3. **Admin** - Full control over events, members, external event sync
 
-## Core Requirements (Static)
+## Core Pages
+1. Home Page - Hero with 3D animation, stats, featured event
+2. About Page - Vision, mission, why join, college info
+3. Events Page - Internal (Nexora) and External (Unstop, HackerEarth) tabs
+4. Team Page - Leadership and core team members
+5. Resources Page - Learning materials with quick links
+6. Join Us Page - Registration form
+7. Login Page - Email/password authentication
+8. Dashboard Page - User profile and registered events
+9. Admin Dashboard - Event management, external sync
 
-### Pages Required
-1. ✅ Home Page - Hero with 3D Spline animation, stats, featured event
-2. ✅ About Page - Vision, mission, why join, faculty coordinator
-3. ✅ Events Page - Upcoming and past events with registration
-4. ✅ Team Page - Leadership and core team members
-5. ✅ Resources Page - Learning materials (DSA, Web Dev, Hackathons, Interviews)
-6. ✅ Join Us Page - Registration form with validation
-
-### Design Requirements
-- ✅ Dark theme with black (#000000) background
-- ✅ Cyan-green accent color (#00FFD1)
-- ✅ Sharp-edged buttons (border-radius: 0px)
-- ✅ High contrast typography
-- ✅ Responsive design (mobile + desktop)
-- ✅ Smooth animations and transitions
-- ✅ Spline 3D integration on hero section
-
-### Functional Requirements (Frontend)
-- ✅ Multi-page navigation with React Router
-- ✅ Registration form with client-side validation
-- ✅ Event registration alerts (mock)
-- ✅ Responsive navigation with mobile menu
-- ✅ Social media links in footer
-- ✅ Interactive buttons and hover effects
+---
 
 ## What's Been Implemented
 
-### Phase 1: Frontend with Mock Data ✅ (December 18, 2024)
-[Previous content remains same]
+### Phase 4: User Authentication & Dashboard (December 18, 2025) - COMPLETED
 
-### Phase 3: External Events Integration ✅ (December 18, 2024)
+**Login System:**
+- Login page with email/password form
+- JWT token authentication
+- Login/Logout state reflected in Navbar
+- Protected routes redirect to login
 
-**External Platform Integration:**
-- ✅ Multi-platform event aggregation system
-- ✅ Support for Unstop, HackerEarth, Devfolio
-- ✅ Automatic event syncing functionality
-- ✅ Platform-specific badges and filters
+**User Dashboard:**
+- Profile information display (name, email, phone, branch, year, interest area)
+- Event registrations list with status
+- Stats cards (events registered, completed, account type)
+- Logout functionality
 
-**New Features:**
-- ✅ Separate tabs for internal and external events
-- ✅ "Register on Platform" buttons for external events
-- ✅ Platform badges (Unstop, HackerEarth, Devfolio)
-- ✅ Admin sync endpoint to fetch latest events
-- ✅ Event type filtering (internal/external)
-- ✅ Platform-based filtering
+**UI Enhancements:**
+- Club logo added to Navbar
+- Login button in Navbar (when logged out)
+- Dashboard + Logout links (when logged in)
+- Mobile responsive auth state
+- HackerRank and LeetCode added to Resources quick links
 
-**External Events Fetched:**
-- ✅ Smart India Hackathon 2024 (Unstop)
-- ✅ Google Summer of Code 2024 (Unstop)
-- ✅ CodeArena Monthly Challenge (HackerEarth)
-- ✅ HackerEarth ML Challenge (HackerEarth)
-- ✅ ETHIndia 2024 (Devfolio)
+**Test Coverage:**
+- 13/13 backend tests passing
+- All frontend flows verified
+- Protected routes working
 
-**Backend Enhancements:**
-- ✅ Extended Event model with is_external, external_url, platform fields
-- ✅ External events fetcher module
-- ✅ Sync endpoint: `POST /api/events/sync-external` (Admin only)
-- ✅ Query filters: `?event_type=internal/external`
-- ✅ Platform filter: `?platform=unstop/hackerearth/devfolio`
+---
 
-**Frontend Updates:**
-- ✅ Tabbed interface for event categories
-- ✅ External link icon for platform events
-- ✅ Dynamic event counting in tabs
-- ✅ Conditional registration buttons
-- ✅ Platform badges on event cards
+### Previous Phases Summary
 
-**How It Works:**
-1. Admin triggers sync: `POST /api/events/sync-external`
-2. System fetches events from all platforms
-3. New events are added, existing events are updated
-4. Events displayed in separate tabs
-5. Users can register directly on external platforms
+**Phase 3: External Events Integration**
+- Multi-platform event aggregation (Unstop, HackerEarth, Devfolio)
+- Separate tabs for internal/external events
+- Admin sync endpoint
 
-**Backend Infrastructure:**
-- ✅ FastAPI server with proper routing and middleware
-- ✅ MongoDB integration with Motor (async driver)
-- ✅ Database indexes for performance optimization
-- ✅ Comprehensive error handling
-- ✅ API documentation (available at /docs)
+**Phase 2: Full Backend Development**
+- FastAPI server with MongoDB
+- JWT authentication system
+- All CRUD endpoints for events, members, registrations
+- Stats API
 
-**Authentication System:**
-- ✅ JWT-based authentication with 7-day token expiry
-- ✅ Password hashing using bcrypt
-- ✅ Role-based access control (admin/member)
-- ✅ Secure login and registration endpoints
-- ✅ Token validation middleware
+**Phase 1: Frontend with Mock Data**
+- All 6 core pages built
+- Dark theme with cyan-green accent
+- Spline 3D animation
+- Responsive design
 
-**API Endpoints Implemented:**
-- ✅ `POST /api/auth/register` - Member registration with password
-- ✅ `POST /api/auth/login` - Member login with JWT token
-- ✅ `GET /api/auth/me` - Get current user details
-- ✅ `GET /api/members` - Get all members (admin only)
-- ✅ `GET /api/events` - Get all events
-- ✅ `GET /api/events/{id}` - Get event by ID
-- ✅ `POST /api/events` - Create event (admin only)
-- ✅ `PUT /api/events/{id}` - Update event (admin only)
-- ✅ `DELETE /api/events/{id}` - Delete event (admin only)
-- ✅ `POST /api/registrations` - Register for event (authenticated)
-- ✅ `GET /api/registrations/my-registrations` - Get user's registrations
-- ✅ `GET /api/registrations/event/{id}` - Get event registrations
-- ✅ `GET /api/stats` - Get club statistics
+---
 
-**Frontend-Backend Integration:**
-- ✅ Axios API client with interceptors
-- ✅ JWT token storage in localStorage
-- ✅ Real-time stats from backend on home page
-- ✅ Event registration with authentication check
-- ✅ Dynamic event loading from database
-- ✅ Error handling with user-friendly messages
-- ✅ Loading states for better UX
-
-**Security Features:**
-- ✅ Password hashing (bcrypt with salt)
-- ✅ JWT token authentication
-- ✅ Role-based authorization
-- ✅ Protected routes (admin-only endpoints)
-- ✅ Email uniqueness validation
-- ✅ CORS configuration
-
-**Database Models:**
-- ✅ Members collection (name, email, phone, branch, year, interest, password, role)
-- ✅ Events collection (title, description, date, category, image, registration count)
-- ✅ Registrations collection (member info, event info, status)
-
-**Tested and Working:**
-- ✅ Member registration creates account in database
-- ✅ Login returns JWT token
-- ✅ Stats API shows real data from database
-- ✅ Events API returns all events from database
-- ✅ Event registration requires authentication
-- ✅ Admin can create events
-- ✅ Registration count updates automatically
-- **Components Created:**
-  - Navbar - Fixed header with responsive mobile menu
-  - Footer - Social links (Instagram, LinkedIn, GitHub, Email)
-  - Home page with Spline 3D neon balls animation
-  - About page with vision, mission, and why join sections
-  - Events page with upcoming and past events
-  - Team page with leadership and core team grids
-  - Resources page with learning material cards
-  - Join Us page with comprehensive registration form
-
-- **Mock Data Structure:**
-  - Club statistics (250+ members, 45+ events, 30+ workshops)
-  - 4 upcoming events with images and details
-  - 3 past events with attendee counts
-  - 6 team members (3 leadership + 3 core team)
-  - 4 resource categories
-  - Interest areas, branches, and year options for registration
-
-- **Design System Implemented:**
-  - Custom CSS variables for dark theme
-  - Typography scale (display-huge to body-small)
-  - Button styles (primary and secondary)
-  - Transition and hover effects
-  - Responsive breakpoints
-
-- **Key Features:**
-  - All navigation working correctly
-  - Form validation on Join Us page
-  - Success message after form submission
-  - Responsive design for mobile and desktop
-  - Smooth page transitions
-
-## Prioritized Backlog
-
-### P0 - Critical (Completed ✅)
-1. ✅ **Backend Development**
-   - ✅ Set up FastAPI endpoints
-   - ✅ MongoDB models for members, events, and registrations
-   - ✅ JWT authentication
-   - ✅ CRUD operations
-
-2. ✅ **Database Integration**
-   - ✅ Connect frontend forms to backend APIs
-   - ✅ Remove mock data dependencies
-   - ✅ Implement data persistence
-
-### P1 - Important (Next Phase)
-1. **Enhanced Authentication**
-   - Password reset functionality
-   - Email verification
-   - Remember me feature
-   - Session management improvements
-
-2. **Admin Dashboard**
-   - Admin panel UI
-   - Event management interface
-   - Member management
-   - Registration approvals/rejections
-   - Export data functionality
-
-3. **Email Notifications**
-   - Welcome email after registration
-   - Event registration confirmation
-   - Event reminders
-   - Newsletter functionality
-
-### P2 - Nice to Have
-1. **Enhanced Features**
-   - Search functionality for events and resources
-   - Event calendar view
-   - Member dashboard
-   - Blog/news section
-   - Gallery for past events
-
-2. **Integrations**
-   - Email service (SendGrid/AWS SES)
-   - Google OAuth for login
-   - Payment gateway for paid events
-   - Analytics integration
-
-## API Contracts (To Be Implemented)
+## API Endpoints (Implemented)
 
 ### Authentication
-- `POST /api/auth/register` - Register new member
-- `POST /api/auth/login` - Member login
-- `POST /api/auth/logout` - Member logout
-
-### Members
-- `GET /api/members` - Get all members
-- `GET /api/members/:id` - Get member by ID
-- `PUT /api/members/:id` - Update member profile
+- `POST /api/auth/register` - Member registration
+- `POST /api/auth/login` - Member login (returns JWT)
+- `GET /api/auth/me` - Get current user profile
 
 ### Events
 - `GET /api/events` - Get all events
-- `GET /api/events/:id` - Get event by ID
-- `POST /api/events` - Create new event (admin only)
-- `PUT /api/events/:id` - Update event (admin only)
-- `DELETE /api/events/:id` - Delete event (admin only)
-- `POST /api/events/:id/register` - Register for event
+- `GET /api/events?event_type=internal|external` - Filter by type
+- `GET /api/events/{id}` - Get event by ID
+- `POST /api/events` - Create event (admin)
+- `PUT /api/events/{id}` - Update event (admin)
+- `DELETE /api/events/{id}` - Delete event (admin)
+- `POST /api/events/sync-external` - Sync external events (admin)
 
-### Resources
-- `GET /api/resources` - Get all resources
-- `POST /api/resources` - Create resource (admin only)
+### Registrations
+- `POST /api/registrations` - Register for event
+- `GET /api/registrations/my-registrations` - User's registrations
+- `GET /api/registrations/event/{id}` - Event registrations
 
-## Current Mock Data (To Be Replaced with Backend)
-All data is currently stored in `/app/frontend/src/mock.js`:
-- Club statistics
-- Featured and upcoming events
-- Past events
-- Team members
-- Resources
-- Form options (branches, years, interest areas)
-- Social links
+### Stats
+- `GET /api/stats` - Club statistics
 
-## Next Tasks
-1. Build backend API with FastAPI
-2. Create MongoDB models and schemas
-3. Implement JWT authentication
-4. Connect registration form to backend
-5. Create event registration endpoints
-6. Test end-to-end functionality
-7. Deploy to production
+---
 
-## Technical Stack
-- **Frontend:** React 19, React Router 7.5.1, Tailwind CSS, Shadcn UI
-- **3D Graphics:** Spline (@splinetool/react-spline 4.1.0)
-- **Backend:** FastAPI 0.110.1 (to be implemented)
-- **Database:** MongoDB with Motor (async driver) (to be implemented)
-- **Authentication:** JWT with PyJWT (to be implemented)
+## Database Schema
+
+**Members Collection:**
+- name, email (unique), phone, branch, year, interest_area
+- hashed_password, role (member/admin), is_active, created_at
+
+**Events Collection:**
+- title, description, date, category, image
+- is_external, external_url, platform
+- registrations_count, created_by, created_at
+
+**Registrations Collection:**
+- member_id, member_name, member_email
+- event_id, event_title
+- registration_date, status
+
+---
+
+## Test Credentials
+- **Test User:** testuser123@test.com / testpass123
+- **Admin:** admin@nexora.com / adminpassword
+
+---
+
+## Prioritized Backlog
+
+### P0 - Critical (COMPLETED)
+1. User Login page
+2. User Dashboard (profile + registered events)
+3. Logo in Navbar
+4. HackerRank/LeetCode links in Resources
+
+### P1 - Important (Next Phase)
+1. **Full Admin Panel** - CRUD interface for events with edit/delete
+2. **Dynamic External Events** - Web scraping from live platforms
+3. **User Scores/Performance** - Track user performance in events
+4. **Password Reset** - Forgot password flow
+5. **Email Notifications** - Registration confirmation emails
+
+### P2 - Nice to Have
+1. Event calendar view
+2. Gallery for past events
+3. Blog/news section
+4. Google OAuth integration
+5. Payment gateway for paid events
+6. Search functionality
+
+---
+
+## Files Structure
+
+```
+/app
+├── backend/
+│   ├── server.py          # FastAPI app entry
+│   ├── database.py        # MongoDB connection
+│   ├── auth.py            # JWT utilities
+│   ├── models.py          # Pydantic models
+│   ├── external_events.py # External events fetcher
+│   ├── routes/
+│   │   ├── auth.py        # Auth endpoints
+│   │   ├── events.py      # Events endpoints
+│   │   ├── members.py     # Members endpoints
+│   │   ├── registrations.py # Registration endpoints
+│   │   └── stats.py       # Stats endpoint
+│   └── tests/
+│       └── test_auth_api.py # API tests
+└── frontend/
+    ├── src/
+    │   ├── App.js         # Routes
+    │   ├── api.js         # API client
+    │   ├── mock.js        # Static mock data
+    │   ├── components/
+    │   │   ├── Navbar.jsx  # Navigation with auth state
+    │   │   └── Footer.jsx
+    │   └── pages/
+    │       ├── Home.jsx
+    │       ├── About.jsx
+    │       ├── Events.jsx
+    │       ├── Team.jsx
+    │       ├── Resources.jsx
+    │       ├── JoinUs.jsx
+    │       ├── Login.jsx
+    │       ├── Dashboard.jsx
+    │       └── AdminDashboard.jsx
+    └── public/
+        └── logo.png        # Club logo
+```
+
+---
+
+## 3rd Party Integrations
+- **Spline:** 3D neon balls animation on Home page
+- **External Platforms (Mocked):** Unstop, HackerEarth, Devfolio events
+
+---
+
+## Project Health
+- **Backend:** 100% working (13/13 tests passing)
+- **Frontend:** All flows functional
+- **Auth:** JWT working correctly
+- **Mocked:** External events sync uses hardcoded data (not live scraping)
