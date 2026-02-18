@@ -8,15 +8,16 @@ import { Events } from "./pages/Events";
 import { Team } from "./pages/Team";
 import { Resources } from "./pages/Resources";
 import { JoinUs } from "./pages/JoinUs";
+import { Login } from "./pages/Login";
+import { Dashboard } from "./pages/Dashboard";
 import { AdminDashboard } from "./pages/AdminDashboard";
 
-// Protected Route for Admin
+// Protected Route for logged-in users
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   
   if (!token) {
-    alert("Please login first to access admin panel!");
-    return <Navigate to="/join" replace />;
+    return <Navigate to="/login" replace />;
   }
   
   return children;
@@ -34,6 +35,15 @@ function App() {
           <Route path="/team" element={<Team />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/join" element={<JoinUs />} />
+          <Route path="/login" element={<Login />} />
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
           <Route 
             path="/admin" 
             element={
