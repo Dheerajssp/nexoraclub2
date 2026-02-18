@@ -67,12 +67,13 @@ export const Resources = () => {
         {/* Quick Access Section */}
         <div className="bg-bg-secondary border border-border-subtle p-12">
           <h2 className="display-medium text-white mb-8 text-center">Quick Links</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             <a
               href="https://unstop.com/hackathons"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-center"
+              data-testid="unstop-link"
             >
               Unstop
             </a>
@@ -81,6 +82,7 @@ export const Resources = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-center"
+              data-testid="hackerearth-link"
             >
               HackerEarth
             </a>
@@ -89,6 +91,7 @@ export const Resources = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-center"
+              data-testid="gfg-link"
             >
               GeeksforGeeks
             </a>
@@ -97,8 +100,27 @@ export const Resources = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary text-center"
+              data-testid="codechef-link"
             >
               CodeChef
+            </a>
+            <a
+              href="https://www.hackerrank.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-center"
+              data-testid="hackerrank-link"
+            >
+              HackerRank
+            </a>
+            <a
+              href="https://leetcode.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-center"
+              data-testid="leetcode-link"
+            >
+              LeetCode
             </a>
           </div>
         </div>
