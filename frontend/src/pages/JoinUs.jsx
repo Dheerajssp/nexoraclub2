@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, AlertCircle } from "lucide-react";
 import { interestAreas, branches, years } from "../mock";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select";
+import { authAPI } from "../api";
 
 export const JoinUs = () => {
   const [formData, setFormData] = useState({
@@ -20,9 +21,12 @@ export const JoinUs = () => {
     branch: "",
     year: "",
     interestArea: "",
-    message: ""
+    message: "",
+    password: ""
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -38,26 +42,49 @@ export const JoinUs = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setLoading(true);
+    setError(null);
     
-    // Simulate form submission
-    setSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        branch: "",
-        year: "",
-        interestArea: "",
-        message: ""
+    try {
+      // Register user with backend
+      const response = await authAPI.register({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        branch: formData.branch,
+        year: formData.year,
+        interest_area: formData.interestArea,
+        message: formData.message,
+        password: formData.password
       });
-    }, 3000);
+      
+      // Save token
+      localStorage.setItem("token", response.access_token);
+      
+      // Show success
+      setSubmitted(true);
+      
+      // Reset form after 4 seconds
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          branch: "",
+          year: "",
+          interestArea: "",
+          message: "",
+          password: ""
+        });
+      }, 4000);
+    } catch (err) {
+      console.error("Registration error:", err);
+      setError(err.response?.data?.detail || "Registration failed. Please try again.");
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -212,6 +239,25 @@ export const JoinUs = () => {
               </Select>
             </div>
 
+            {/* Password */}
+            <div>
+              <Label htmlFor="password" className="text-white body-medium mb-2 block">
+                Create Password *
+              </Label>
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                required
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full bg-black border-border-medium text-white body-medium p-4"
+                placeholder="Create a strong password"
+                minLength={6}
+              />
+              <p className="text-text-muted body-small mt-1">Minimum 6 characters</p>
+            </div>
+
             {/* Message */}
             <div>
               <Label htmlFor="message" className="text-white body-medium mb-2 block">
@@ -227,10 +273,26 @@ export const JoinUs = () => {
               />
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-900/20 border border-red-500 p-4 flex items-start gap-3">
+                <AlertCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
+                <p className="text-red-200 body-medium">{error}</p>
+              </div>
+            )}
+
             {/* Submit Button */}
-            <button type="submit" className="btn-primary w-full">
-              Submit Application
+            <button 
+              type="submit" 
+              className="btn-primary w-full"
+              disabled={loading}
+            >
+              {loading ? "Submitting..." : "Submit Application"}
             </button>
+            
+            <p className="text-text-muted body-small text-center">
+              Already registered? Your credentials will be used for future logins.
+            </p>
           </div>
         </form>
       </div>
