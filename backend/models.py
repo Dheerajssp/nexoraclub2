@@ -69,6 +69,9 @@ class EventBase(BaseModel):
     date: str
     category: str
     image: str
+    is_external: bool = False
+    external_url: Optional[str] = None
+    platform: Optional[str] = None  # unstop, hackerearth, devfolio, etc.
 
 class EventCreate(EventBase):
     pass
@@ -78,6 +81,7 @@ class Event(EventBase):
     registrations_count: int = 0
     created_by: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
+    last_synced: Optional[datetime] = None
 
     class Config:
         populate_by_name = True
@@ -94,6 +98,9 @@ class EventResponse(BaseModel):
     image: str
     registrations_count: int
     created_at: datetime
+    is_external: bool = False
+    external_url: Optional[str] = None
+    platform: Optional[str] = None
 
 
 # Registration Models
