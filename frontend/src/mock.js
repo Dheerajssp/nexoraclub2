@@ -125,31 +125,75 @@ export const teamMembers = [
 export const resources = [
   {
     id: 1,
-    title: "DSA Preparation Guide",
-    description: "Complete roadmap for Data Structures and Algorithms with curated problems",
-    topics: ["Arrays", "Trees", "Graphs", "Dynamic Programming"],
+    title: "Coding Platforms",
+    description: "Practice DSA and participate in coding competitions",
+    links: [
+      { name: "CodeChef", url: "https://www.codechef.com/", icon: "ExternalLink" },
+      { name: "HackerRank", url: "https://www.hackerrank.com/", icon: "ExternalLink" },
+      { name: "LeetCode", url: "https://leetcode.com/", icon: "ExternalLink" },
+      { name: "Codeforces", url: "https://codeforces.com/", icon: "ExternalLink" }
+    ],
     icon: "Code2"
   },
   {
     id: 2,
-    title: "Web Development Roadmap",
-    description: "From HTML basics to full-stack deployment",
-    topics: ["HTML/CSS", "JavaScript", "React", "Node.js", "MongoDB"],
-    icon: "Globe"
+    title: "Learning Platforms",
+    description: "Learn programming from basics to advanced",
+    links: [
+      { name: "GeeksforGeeks", url: "https://www.geeksforgeeks.org/", icon: "ExternalLink" },
+      { name: "TutorialsPoint", url: "https://www.tutorialspoint.com/", icon: "ExternalLink" },
+      { name: "W3Schools", url: "https://www.w3schools.com/", icon: "ExternalLink" },
+      { name: "JavaTpoint", url: "https://www.javatpoint.com/", icon: "ExternalLink" }
+    ],
+    icon: "BookOpen"
   },
   {
     id: 3,
-    title: "Hackathon Preparation",
-    description: "Tips, tools, and strategies to win hackathons",
-    topics: ["Ideation", "Prototyping", "Pitching", "Tech Stack"],
+    title: "Hackathon Platforms",
+    description: "Find and participate in hackathons",
+    links: [
+      { name: "Unstop", url: "https://unstop.com/hackathons", icon: "ExternalLink" },
+      { name: "HackerEarth", url: "https://www.hackerearth.com/challenges/", icon: "ExternalLink" },
+      { name: "Hack2Skill", url: "https://hack2skill.com/", icon: "ExternalLink" },
+      { name: "Devfolio", url: "https://devfolio.co/hackathons", icon: "ExternalLink" }
+    ],
     icon: "Zap"
   },
   {
     id: 4,
-    title: "Interview Prep Materials",
-    description: "Ace your technical interviews with confidence",
-    topics: ["Coding Problems", "System Design", "Behavioral Questions"],
-    icon: "BookOpen"
+    title: "YouTube Channels - DSA",
+    description: "Best YouTube channels for learning DSA and placement prep",
+    links: [
+      { name: "Love Babbar", url: "https://www.youtube.com/@CodeHelp", icon: "Youtube" },
+      { name: "Apna College (Shradha Didi)", url: "https://www.youtube.com/@ApnaCollegeOfficial", icon: "Youtube" },
+      { name: "Striver (TakeUforward)", url: "https://www.youtube.com/@takeUforward", icon: "Youtube" },
+      { name: "Aditya Verma", url: "https://www.youtube.com/@TheAdityaVerma", icon: "Youtube" }
+    ],
+    icon: "Play"
+  },
+  {
+    id: 5,
+    title: "YouTube Channels - Web Dev",
+    description: "Learn web development from scratch",
+    links: [
+      { name: "CodeWithHarry", url: "https://www.youtube.com/@CodeWithHarry", icon: "Youtube" },
+      { name: "Thapa Technical", url: "https://www.youtube.com/@ThapaTechnical", icon: "Youtube" },
+      { name: "Hitesh Choudhary", url: "https://www.youtube.com/@HiteshChoudharydotcom", icon: "Youtube" },
+      { name: "Traversy Media", url: "https://www.youtube.com/@TraversyMedia", icon: "Youtube" }
+    ],
+    icon: "Globe"
+  },
+  {
+    id: 6,
+    title: "YouTube Channels - General",
+    description: "Programming tutorials and tech content",
+    links: [
+      { name: "EzSnippet", url: "https://www.youtube.com/@EzSnippet", icon: "Youtube" },
+      { name: "freeCodeCamp", url: "https://www.youtube.com/@freecodecamp", icon: "Youtube" },
+      { name: "Programming with Mosh", url: "https://www.youtube.com/@programmingwithmosh", icon: "Youtube" },
+      { name: "Clever Programmer", url: "https://www.youtube.com/@CleverProgrammer", icon: "Youtube" }
+    ],
+    icon: "Video"
   }
 ];
 
