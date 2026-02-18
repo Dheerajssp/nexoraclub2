@@ -7,7 +7,9 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import os
 
 # Security configuration
-SECRET_KEY = os.getenv("SECRET_KEY", "nexora-club-secret-key-2024-change-in-production")
+SECRET_KEY = os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY environment variable must be set")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
 

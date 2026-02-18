@@ -30,7 +30,11 @@ async def get_all_events(
     if platform:
         query_filter["platform"] = platform
     
-    cursor = events_collection.find(query_filter).skip(skip).limit(limit).sort("date", -1)
+    cursor = events_collection.find(
+        query_filter, 
+        {'_id': 1, 'title': 1, 'description': 1, 'date': 1, 'category': 1, 'image': 1, 
+         'registrations_count': 1, 'created_at': 1, 'is_external': 1, 'external_url': 1, 'platform': 1}
+    ).skip(skip).limit(limit).sort("date", -1)
     events = await cursor.to_list(length=limit)
     
     return [

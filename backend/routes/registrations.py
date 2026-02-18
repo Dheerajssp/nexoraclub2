@@ -96,7 +96,9 @@ async def get_my_registrations(current_user: dict = Depends(get_current_user)):
         )
     
     cursor = registrations_collection.find(
-        {"member_id": str(member["_id"])}
+        {"member_id": str(member["_id"])},
+        {'_id': 1, 'member_id': 1, 'member_name': 1, 'member_email': 1, 
+         'event_id': 1, 'event_title': 1, 'registration_date': 1, 'status': 1}
     ).sort("registration_date", -1)
     
     registrations = await cursor.to_list(length=100)
@@ -127,10 +129,12 @@ async def get_event_registrations(event_id: str, current_user: dict = Depends(ge
         )
     
     cursor = registrations_collection.find(
-        {"event_id": event_id}
-    ).sort("registration_date", -1)
+        {"event_id": event_id},
+        {'_id': 1, 'member_id': 1, 'member_name': 1, 'member_email': 1, 
+         'event_id': 1, 'event_title': 1, 'registration_date': 1, 'status': 1}
+    ).sort("registration_date", -1).limit(500)
     
-    registrations = await cursor.to_list(length=1000)
+    registrations = await cursor.to_list(length=500)
     
     return [
         Registration(
