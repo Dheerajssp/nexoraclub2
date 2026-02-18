@@ -1,4 +1,4 @@
-import { Target, Lightbulb, Users } from "lucide-react";
+import { Target, Lightbulb, Users, ExternalLink, School } from "lucide-react";
 
 export const About = () => {
   return (
@@ -10,8 +10,36 @@ export const About = () => {
             About <span className="text-brand-primary">Nexora</span> Club
           </h1>
           <p className="body-large text-text-secondary max-w-3xl mx-auto">
-            A student-driven community passionate about technology, innovation, and continuous learning.
+            A student-driven tech community at R.D. Engineering College, passionate about innovation and continuous learning.
           </p>
+        </div>
+
+        {/* College Information */}
+        <div className="mb-16 bg-bg-secondary border border-brand-primary p-8 md:p-12">
+          <div className="flex items-start gap-6">
+            <div className="p-4 bg-brand-primary">
+              <School className="text-black" size={32} />
+            </div>
+            <div className="flex-1">
+              <h2 className="heading-1 text-white mb-4">Our Institution</h2>
+              <h3 className="heading-2 text-brand-primary mb-3">
+                R.D. Engineering College (RDEC)
+              </h3>
+              <p className="body-medium text-text-secondary leading-relaxed mb-4">
+                Top Engineering College in Ghaziabad, Delhi NCR, Uttar Pradesh. 
+                RDEC is committed to providing quality technical education and fostering innovation among students.
+              </p>
+              <a
+                href="https://rdec.ac.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-brand-primary hover:underline body-medium"
+              >
+                Visit College Website
+                <ExternalLink size={18} />
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Vision */}
@@ -111,10 +139,13 @@ export const About = () => {
                 <span className="font-semibold text-white">Dr. Rajesh Kumar</span>
               </p>
               <p className="body-medium text-text-muted">
-                Professor, Department of Computer Science
+                Professor, Department of Computer Science & Engineering
+              </p>
+              <p className="body-medium text-text-muted">
+                R.D. Engineering College, Ghaziabad
               </p>
               <p className="body-small text-text-muted mt-3">
-                Email: rajesh.kumar@college.edu
+                Email: nexoraclub@rdec.ac.in
               </p>
             </div>
           </div>
