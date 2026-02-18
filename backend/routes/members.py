@@ -15,7 +15,11 @@ async def get_all_members(
 ):
     """Get all members (Admin only)"""
     
-    cursor = members_collection.find().skip(skip).limit(limit).sort("created_at", -1)
+    cursor = members_collection.find(
+        {},
+        {'_id': 1, 'name': 1, 'email': 1, 'phone': 1, 'branch': 1, 
+         'year': 1, 'interest_area': 1, 'role': 1, 'created_at': 1}
+    ).skip(skip).limit(limit).sort("created_at", -1)
     members = await cursor.to_list(length=limit)
     
     return [
