@@ -1,9 +1,36 @@
 import { ArrowRight, Users, Calendar, Award } from "lucide-react";
 import { Link } from "react-router-dom";
-import { clubStats, featuredEvent } from "../mock";
+import { useState, useEffect } from "react";
+import { featuredEvent } from "../mock";
+import { statsAPI } from "../api";
 import Spline from "@splinetool/react-spline";
 
 export const Home = () => {
+  const [stats, setStats] = useState({
+    total_members: 0,
+    total_events: 0,
+    total_registrations: 0
+  });
+
+  useEffect(() => {
+    // Fetch real stats from backend
+    const fetchStats = async () => {
+      try {
+        const data = await statsAPI.getClubStats();
+        setStats(data);
+      } catch (error) {
+        console.error("Error fetching stats:", error);
+        // Use default values if API fails
+        setStats({
+          total_members: 0,
+          total_events: 0,
+          total_registrations: 0
+        });
+      }
+    };
+    
+    fetchStats();
+  }, []);
   return (
     <div className="dark-container">
       {/* Hero Section with Spline */}
@@ -49,18 +76,18 @@ export const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-bg-secondary border border-border-subtle p-8 text-center dark-transition hover:border-brand-primary">
               <Users className="mx-auto mb-4 text-brand-primary" size={48} />
-              <h3 className="display-medium text-white mb-2">{clubStats.members}+</h3>
+              <h3 className="display-medium text-white mb-2">{stats.total_members}+</h3>
               <p className="body-medium text-text-muted">Active Members</p>
             </div>
             <div className="bg-bg-secondary border border-border-subtle p-8 text-center dark-transition hover:border-brand-primary">
               <Calendar className="mx-auto mb-4 text-brand-primary" size={48} />
-              <h3 className="display-medium text-white mb-2">{clubStats.events}+</h3>
+              <h3 className="display-medium text-white mb-2">{stats.total_events}+</h3>
               <p className="body-medium text-text-muted">Events Organized</p>
             </div>
             <div className="bg-bg-secondary border border-border-subtle p-8 text-center dark-transition hover:border-brand-primary">
               <Award className="mx-auto mb-4 text-brand-primary" size={48} />
-              <h3 className="display-medium text-white mb-2">{clubStats.workshops}+</h3>
-              <p className="body-medium text-text-muted">Workshops Conducted</p>
+              <h3 className="display-medium text-white mb-2">{stats.total_registrations}+</h3>
+              <p className="body-medium text-text-muted">Event Registrations</p>
             </div>
           </div>
         </div>
