@@ -47,12 +47,24 @@ export const eventsAPI = {
     const response = await api.get("/events");
     return response.data;
   },
+  getByType: async (type) => {
+    const response = await api.get(`/events?event_type=${type}`);
+    return response.data;
+  },
+  getByPlatform: async (platform) => {
+    const response = await api.get(`/events?platform=${platform}`);
+    return response.data;
+  },
   getById: async (id) => {
     const response = await api.get(`/events/${id}`);
     return response.data;
   },
   create: async (data) => {
     const response = await api.post("/events", data);
+    return response.data;
+  },
+  syncExternal: async () => {
+    const response = await api.post("/events/sync-external");
     return response.data;
   },
 };
